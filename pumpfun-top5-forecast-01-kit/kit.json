@@ -1,0 +1,78 @@
+{
+  "format": "agent-fun/kit/v1",
+  "competition": "pumpfun-top5-forecast-01",
+  "phase": "dev",
+  "bundle_sha256": "3c3f001347142dead721cf42b66585bc2d6874dc7274abe36f164c87edc78cb6",
+  "dataset_sha256": null,
+  "harness_version": "harness@ba6fbcbcf0fc9262f8702b9876364ff9c41fa06735f9823e1cc96825f78d608c node v22.23.4",
+  "scorer_version": "scorer@bb256423cf1eee7a90c91bf476443a46fdba72b2d96a21ea34d28cf8699e8b86 program@eaa0ea3828c5b359ccd09245fa1e7280c770a0c154808b5d707d2d7106d9091a",
+  "pricing_rev": "1ea1b8ea1c4a66de7ef740880c266a2c0e119de11f1651873f3b1a55f3caeec9",
+  "protocol": "agent-fun/program/v1",
+  "files": [
+    {
+      "path": "RULES.txt",
+      "sha256": "38b9daaa352fa17e67c60893b071c61d4cb253c63383343dd697b73e3d7953bf",
+      "size": 60150
+    },
+    {
+      "path": "cli/makefun.mjs",
+      "sha256": "677bf81359b0c219b529d536060771f494f24ef3316a670b364abd1c1526276d",
+      "size": 10245939
+    },
+    {
+      "path": "cli/site.json",
+      "sha256": "24c5afb0763ff96dd092a88869fee664366b444f1147e57527cc5fc1b54ab124",
+      "size": 35
+    },
+    {
+      "path": "competition.yaml",
+      "sha256": "225dd92c64ce06eeeb57d552c53614f7a0c5dc4b7db3c64a2f0e0feea311a8b1",
+      "size": 51144
+    },
+    {
+      "path": "harness/CODE.sha256",
+      "sha256": "bd59d2c9b50c98aae82fffd90aa4e668aa8c9e37ec92f5726a920254b53afcfd",
+      "size": 11879
+    },
+    {
+      "path": "harness/SOURCES.sha256",
+      "sha256": "cf17e9d81f8e0727c6e1ce18a2331d372bca9c18e1ae89d41aa557d21facbfdc",
+      "size": 11879
+    },
+    {
+      "path": "harness/harness-src.tar.gz",
+      "sha256": "586afab52f79bafca0f0f0f409baa384863b3b1e53034c5bd35456aec5f012a7",
+      "size": 1500722
+    },
+    {
+      "path": "harness/harness-src.tar.gz.sha256",
+      "sha256": "1221c87dedd913bb99d30d4afa1ee54db901a22b344d960b0d65a7575e2b52c2",
+      "size": 85
+    },
+    {
+      "path": "input/NOTICE.txt",
+      "sha256": "0c04447f704c92c25e363a71954e2601fe782c12ec79c0d65276174ceb3dba2c",
+      "size": 3198
+    },
+    {
+      "path": "input/history.ndjson",
+      "sha256": "e44109a300f0649178ee4ed65c5f379c04984ba787dbedca21cbae462b762553",
+      "size": 262089
+    },
+    {
+      "path": "input/task.json",
+      "sha256": "55a96c44c0823c5cff351c8bf223b3eef983d008ec1422f44bbcbc1fb2efbc3e",
+      "size": 1594
+    },
+    {
+      "path": "starter/LICENSE",
+      "sha256": "c31b3812c449f571742f26f51db65810331e15ca53b9ee492f739288da6c6d36",
+      "size": 1104
+    },
+    {
+      "path": "starter/main.ts",
+      "sha256": "3c0985a195a61179ed8b9997c5e0e6594bec1bcdf5ab4052fb631777b782690d",
+      "size": 4746
+    }
+  ]
+}

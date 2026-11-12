@@ -1,0 +1,37 @@
+Where these marks come from
+
+Each line of history.ndjson is one read of public Solana mainnet state by make.fun's recorder
+(collector/pump-forecast in the make.fun repository): the pump.fun coins created by the pump program
+6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P at or after t0 and quoted in SOL, each priced from its own accounts
+read through getMultipleAccounts from a Solana mainnet RPC endpoint (the recording's record.json names its scheme
+and host), ranked by market cap. The data is public chain data, the same from any mainnet RPC node, so a row checks
+against any of them; a coin's name and symbol are the ones its CreateEvent carried on chain.
+
+A coin in pump.fun's mayhem mode (is_mayhem_mode on its bonding curve or pool) is ranked only once its pool prices
+it: on its bonding curve, and while it awaits migration, its price stands on virtual reserves with almost no SOL
+behind them, so no mark ranks it there (and neither does the answer). Once it graduates, its pool row ranks like any
+other.
+
+A row's market cap is in lamports, on the coin's fixed total supply S in raw units (6 decimals), floored: S = 10^15
+for an ordinary coin (pump.fun's 1B), and S = 2 * 10^15 for a mayhem-mode coin (its row's "mayhem" true: pump.fun's
+1B plus the 1B its Mayhem Mode agent mints at creation), held at 2B even after the agent burns what it has not sold
+24 hours in. S is fixed by the kind of coin, never read from the mint's supply:
+  curve      floor(curve.virtual_quote_reserves * S / curve.virtual_token_reserves)
+  pool       floor((quote vault amount + Pool.virtual_quote_reserves) * S / base vault amount), on the coin's
+             canonical PumpSwap pool (PDA ["pool", u16 LE 0, PDA(["pool-authority", mint], pump program), mint, WSOL]
+             under pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA) and its two vaults
+  migrating  a complete curve whose pool is not created yet: floor(quote * S / base), base the curve's own base
+             token account's amount, quote curve.real_quote_reserves + curve.post_complete_quote_in -
+             Global.pool_migration_fee (the reserves the migration deposits)
+
+A row's "slot" is the context slot of the read it was priced from: the accounts as they stood at that slot. Public
+RPC serves only current account state, so a row is checked against the chain through the transactions that set
+those accounts, which it keeps:
+  - list the transactions on the row's account (its bonding curve for a curve or migrating row, its pool's vaults
+    for a pool row) with getSignaturesForAddress, and take the last one that landed at or before the row's slot;
+  - a curve row: that transaction's pump TradeEvent carries the curve's reserves after the trade
+    (virtual_sol_reserves, virtual_token_reserves): the curve formula on them is the row's cap;
+  - a pool row: that transaction's meta.postTokenBalances hold both vaults' amounts after it, and the Pool
+    account's virtual_quote_reserves (a signed i128 at byte 245) completes the pool formula;
+  - a migrating row: the completing transaction's TradeEvent and post-balances give the curve's reserves and its
+    base account's amount (pump-fun/pump-public-docs, SYNTHETIC_MIGRATION.md).
