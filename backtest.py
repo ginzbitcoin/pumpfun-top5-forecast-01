@@ -14,11 +14,8 @@ import os
 import subprocess
 import sys
 
-KIT = os.path.expanduser(
-    "~/workspace/gwallet7/makefun/pumpfun-top5-forecast-01/kit/"
-    "pumpfun-top5-forecast-01-kit"
-)
-WORK = os.path.expanduser("~/workspace/gwallet7/makefun/pumpfun-top5-forecast-01")
+WORK = os.path.dirname(os.path.abspath(__file__))
+KIT = os.path.join(WORK, "pumpfun-top5-forecast-01-kit")
 sys.path.insert(0, WORK)
 from score import history_mints_from, reads_from_marks, score_forecast  # noqa: E402
 
